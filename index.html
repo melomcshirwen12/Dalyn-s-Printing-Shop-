@@ -2203,7 +2203,7 @@
             <button class="close-modal" id="modalClose">&times;</button>
 
             <div id="modalFormView">
-                <h2>Almost there! 🎨</h2>
+                <h2>Almost there!</h2>
                 <p class="sub">
                     Your selected items are ready. Send your contact details and
                     we'll confirm the final quote.
@@ -2242,7 +2242,7 @@
 
             <div class="success-msg" id="modalSuccess">
                 <i class="fas fa-check-circle"></i>
-                <h3>Order Request Sent! 🎉</h3>
+                <h3>Order Request Sent!</h3>
                 <p>We'll get back to you within 24 hours with your final quote.</p>
                 <button class="btn-yellow" style="margin-top:16px;" id="modalSuccessClose">Close</button>
             </div>
@@ -2260,7 +2260,7 @@
         const products = [{
             id: 1,
             name: 'Custom T-Shirt',
-            category: 'apparel',
+            category: 'T-Shirt',
             price: 250,
             desc: 'Personalized shirt printing. Starting price per piece.',
             image: '1.jpeg',
@@ -2268,26 +2268,26 @@
         }, {
             id: 4,
             name: 'Custom Mug',
-            category: 'drinkware',
+            category: 'Mugs',
             price: 180,
             desc: 'Personalized mugs for gifts, offices and souvenirs.',
-            image: 'https://picsum.photos/seed/mug-custom/400/400',
+            image: '2.jpg',
             icon: 'fa-mug-hot'
         }, {
             id: 7,
             name: 'Business Cards',
-            category: 'business',
+            category: 'Business',
             price: 150,
             desc: 'Professional business cards. ₱150 / 100 pcs.',
-            image: 'https://picsum.photos/seed/business-cards/400/400',
+            image: '3.jpg',
             icon: 'fa-id-card'
         }, {
             id: 9,
             name: 'Event Shirt Package',
-            category: 'events',
+            category: 'Events',
             price: 240,
             desc: 'Bulk shirt printing for events. ₱240 / piece.',
-            image: 'https://picsum.photos/seed/event-tshirt/400/400',
+            image: '4.jpg',
             icon: 'fa-calendar-check'
         }];
 
@@ -2343,7 +2343,7 @@
                             <div class="fallback">
                                 <i class="fas ${p.icon}"></i>
                                 ${p.name}
-                                <span>🖼️ Place your image</span>
+                                <span>Place your image</span>
                             </div>
                             <span class="category-badge">${p.category}</span>
                         </div>
