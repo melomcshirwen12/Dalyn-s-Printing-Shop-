@@ -1,0 +1,2873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dalyn's Printing Shop — Bring Your Ideas To Life</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ============================================================
+               DESIGN SYSTEM
+               ============================================================ */
+        :root {
+            --yellow: #FFC400;
+            --yellow-dark: #E6A800;
+            --yellow-light: #FFE680;
+            --black: #141414;
+            --white: #FFFFFF;
+            --cream: #FFFDF7;
+            --cream-dark: #F5F0E6;
+            --gray: #6B6B6B;
+            --gray-light: #E8E4DC;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.10);
+            --shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.18);
+            --radius: 24px;
+            --radius-sm: 12px;
+            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+            --max-width: 1200px;
+        }
+
+        /* ============================================================
+               RESET & BASE
+               ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--cream);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        button {
+            cursor: pointer;
+            font-family: var(--font-body);
+            border: none;
+            background: none;
+            outline: none;
+        }
+        input,
+        textarea,
+        select {
+            font-family: var(--font-body);
+            outline: none;
+            border: none;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gray);
+            background: var(--cream-dark);
+            padding: 6px 16px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .section-title .highlight {
+            color: var(--yellow-dark);
+            position: relative;
+        }
+
+        .section-sub {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 540px;
+            line-height: 1.7;
+        }
+
+        /* ============================================================
+               UTILITY
+               ============================================================ */
+        .text-center {
+            text-align: center;
+        }
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--black);
+            color: var(--white);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 14px 32px;
+            border-radius: 60px;
+            transition: var(--transition);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+            border: 2px solid transparent;
+        }
+        .btn-primary:hover {
+            background: var(--yellow);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(255, 196, 0, 0.35);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: var(--black);
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 14px 32px;
+            border-radius: 60px;
+            transition: var(--transition);
+            border: 2px solid var(--black);
+        }
+        .btn-secondary:hover {
+            background: var(--black);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        .btn-yellow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--yellow);
+            color: var(--black);
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 14px 34px;
+            border-radius: 60px;
+            transition: var(--transition);
+            box-shadow: 0 4px 16px rgba(255, 196, 0, 0.30);
+        }
+        .btn-yellow:hover {
+            background: var(--yellow-dark);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 32px rgba(255, 196, 0, 0.45);
+        }
+
+        /* ============================================================
+               LOGO SVG STYLES
+               ============================================================ */
+        .logo-svg {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+        }
+
+        .logo-svg .d-letter {
+            fill: var(--black);
+        }
+
+        .logo-svg .d-accent {
+            fill: var(--yellow);
+        }
+
+        .logo-svg .d-outline {
+            fill: none;
+            stroke: var(--black);
+            stroke-width: 2;
+        }
+
+        .logo-wrap .logo-icon {
+            background: none;
+            box-shadow: none;
+            width: auto;
+            height: auto;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-wrap .logo-icon:hover {
+            transform: none;
+        }
+
+        /* Header logo adjustments */
+        .header .logo-wrap {
+            gap: 10px;
+        }
+
+        /* Responsive logo */
+        @media (max-width: 768px) {
+            .logo-svg {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-svg {
+                width: 36px;
+                height: 36px;
+            }
+        }
+
+        /* ============================================================
+               HEADER / NAV
+               ============================================================ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 12px 0;
+            transition: var(--transition);
+            background: transparent;
+        }
+        .header.scrolled {
+            background: rgba(255, 253, 247, 0.88);
+            backdrop-filter: blur(16px) saturate(1.2);
+            box-shadow: 0 2px 32px rgba(0, 0, 0, 0.06);
+            padding: 8px 0;
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+        .logo-text .brand {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.15rem;
+            letter-spacing: -0.02em;
+            color: var(--black);
+        }
+        .logo-text .sub {
+            font-size: 0.55rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--gray);
+            text-transform: uppercase;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav a {
+            font-weight: 500;
+            font-size: 0.92rem;
+            color: var(--black);
+            transition: var(--transition);
+            position: relative;
+            padding: 4px 0;
+        }
+        .nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2.5px;
+            background: var(--yellow);
+            transition: var(--transition);
+            border-radius: 4px;
+        }
+        .nav a:hover::after,
+        .nav a.active::after {
+            width: 100%;
+        }
+        .nav a:hover {
+            color: var(--yellow-dark);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .cart-btn {
+            position: relative;
+            font-size: 1.35rem;
+            color: var(--black);
+            transition: var(--transition);
+            padding: 6px;
+        }
+        .cart-btn:hover {
+            color: var(--yellow-dark);
+            transform: scale(1.08);
+        }
+        .cart-count {
+            position: absolute;
+            top: -4px;
+            right: -6px;
+            background: var(--yellow);
+            color: var(--black);
+            font-size: 0.65rem;
+            font-weight: 700;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            padding: 4px;
+            cursor: pointer;
+        }
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: var(--black);
+            border-radius: 4px;
+            transition: var(--transition);
+            transform-origin: center;
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile nav */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--cream);
+            z-index: 999;
+            padding: 80px 32px 40px;
+            flex-direction: column;
+            gap: 24px;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            overflow-y: auto;
+        }
+        .mobile-nav.open {
+            transform: translateX(0);
+            display: flex;
+        }
+        .mobile-nav a {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--black);
+            transition: var(--transition);
+            padding: 8px 0;
+            border-bottom: 2px solid transparent;
+        }
+        .mobile-nav a:hover {
+            color: var(--yellow-dark);
+            border-bottom-color: var(--yellow);
+        }
+        .mobile-nav .close-nav {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            font-size: 2rem;
+            color: var(--black);
+        }
+
+        /* ============================================================
+               HERO
+               ============================================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(160deg, #FFE680 0%, #FFC400 40%, #F5B800 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 120px 0 80px;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.15);
+            top: -200px;
+            right: -100px;
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            bottom: -100px;
+            left: -80px;
+            pointer-events: none;
+        }
+
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content .badge {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(4px);
+            padding: 6px 18px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--black);
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.8rem, 6.5vw, 4.8rem);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            color: var(--black);
+            margin-bottom: 20px;
+        }
+        .hero-content h1 .highlight {
+            color: #B87C00;
+            position: relative;
+        }
+        .hero-content h1 .highlight::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 4px;
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 4px;
+            z-index: -1;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: rgba(0, 0, 0, 0.75);
+            max-width: 460px;
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-bottom: 32px;
+        }
+
+        .hero-trust {
+            display: flex;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+        .hero-trust span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: rgba(0, 0, 0, 0.7);
+        }
+        .hero-trust i {
+            color: var(--black);
+            font-size: 1rem;
+        }
+
+        /* ============================================================
+               HERO SLIDESHOW GALLERY
+               ============================================================ */
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .slideshow-container {
+            width: 100%;
+            max-width: 420px;
+            aspect-ratio: 3/4;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.20);
+            position: relative;
+            overflow: hidden;
+            animation: float 4s ease-in-out infinite;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-16px);
+            }
+        }
+
+        .slideshow-container .slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--cream);
+        }
+
+        .slideshow-container .slide.active {
+            opacity: 1;
+        }
+
+        .slideshow-container .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--radius);
+        }
+
+        /* Floating card */
+        .hero-image .floating-card {
+            position: absolute;
+            bottom: 20px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(4px);
+            padding: 10px 16px;
+            border-radius: 14px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.14);
+            font-weight: 600;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            animation: float 3.5s ease-in-out infinite 0.5s;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            z-index: 5;
+        }
+        .floating-card i {
+            color: var(--yellow-dark);
+            font-size: 0.8rem;
+        }
+
+        /* Decorative ring */
+        .hero-image .ring {
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            border: 3px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            top: -10%;
+            left: -10%;
+            pointer-events: none;
+            animation: spin 30s linear infinite;
+        }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ============================================================
+               MARQUEE
+               ============================================================ */
+        .marquee {
+            background: var(--black);
+            color: var(--white);
+            padding: 16px 0;
+            overflow: hidden;
+            border-top: 3px solid var(--yellow);
+            border-bottom: 3px solid var(--yellow);
+        }
+        .marquee-track {
+            display: flex;
+            gap: 48px;
+            white-space: nowrap;
+            animation: marqueeScroll 24s linear infinite;
+            width: max-content;
+        }
+        .marquee-track span {
+            font-weight: 600;
+            font-size: 1.05rem;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .marquee-track span i {
+            color: var(--yellow);
+            font-size: 0.7rem;
+        }
+        @keyframes marqueeScroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ============================================================
+               ABOUT
+               ============================================================ */
+        .about {
+            background: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 40px;
+            align-items: start;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .step-card {
+            background: var(--cream);
+            padding: 24px 20px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+        .step-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+            border-color: var(--yellow-light);
+        }
+        .step-card .num {
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: 2rem;
+            color: var(--yellow-dark);
+            opacity: 0.5;
+            margin-bottom: 4px;
+        }
+        .step-card h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+        .step-card p {
+            font-size: 0.85rem;
+            color: var(--gray);
+            line-height: 1.5;
+        }
+
+        /* ============================================================
+               SERVICES
+               ============================================================ */
+        .services {
+            background: var(--cream);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 28px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 32px 24px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            text-align: center;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--yellow-light);
+        }
+        .service-card .icon {
+            width: 64px;
+            height: 64px;
+            background: var(--yellow);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--black);
+            margin: 0 auto 16px;
+            transition: var(--transition);
+        }
+        .service-card:hover .icon {
+            transform: scale(1.08) rotate(-2deg);
+        }
+        .service-card h3 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.15rem;
+            margin-bottom: 6px;
+        }
+        .service-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .service-card .link {
+            font-weight: 600;
+            color: var(--black);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .service-card .link:hover {
+            color: var(--yellow-dark);
+            gap: 12px;
+        }
+
+        /* ============================================================
+               SHOP / PRODUCTS
+               ============================================================ */
+        .shop {
+            background: var(--white);
+        }
+
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 24px 0 32px;
+            justify-content: center;
+        }
+        .filter-btn {
+            padding: 8px 22px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            background: var(--cream);
+            color: var(--gray);
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+        .filter-btn:hover {
+            background: var(--yellow-light);
+            color: var(--black);
+        }
+        .filter-btn.active {
+            background: var(--yellow);
+            color: var(--black);
+            border-color: var(--yellow-dark);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 28px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.6s forwards;
+        }
+        .product-card:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+        .product-card:nth-child(2) {
+            animation-delay: 0.10s;
+        }
+        .product-card:nth-child(3) {
+            animation-delay: 0.15s;
+        }
+        .product-card:nth-child(4) {
+            animation-delay: 0.20s;
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--yellow-light);
+        }
+
+        .product-card .img-wrap {
+            background: var(--cream);
+            aspect-ratio: 1/1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .product-card .img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+            border-radius: 4px;
+        }
+        .product-card:hover .img-wrap img {
+            transform: scale(1.06);
+        }
+
+        /* Fallback placeholder when image fails */
+        .product-card .img-wrap .fallback {
+            display: none;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
+            border-radius: 4px;
+            color: var(--gray);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 20px;
+        }
+        .product-card .img-wrap .fallback i {
+            font-size: 3rem;
+            color: var(--yellow-dark);
+            margin-bottom: 8px;
+        }
+        .product-card .img-wrap .fallback span {
+            display: block;
+            font-size: 0.85rem;
+            color: var(--gray);
+            font-weight: 400;
+        }
+
+        .product-card .category-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(4px);
+            color: var(--white);
+            font-size: 0.65rem;
+            font-weight: 600;
+            padding: 4px 14px;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 2;
+        }
+
+        .product-card .info {
+            padding: 20px 20px 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card .info h3 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+        .product-card .info .desc {
+            font-size: 0.85rem;
+            color: var(--gray);
+            line-height: 1.5;
+            margin-bottom: 12px;
+            flex: 1;
+        }
+        .product-card .info .price {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--black);
+            margin-bottom: 14px;
+        }
+        .product-card .info .price small {
+            font-weight: 400;
+            font-size: 0.7rem;
+            color: var(--gray);
+        }
+
+        .product-card .add-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--yellow);
+            color: var(--black);
+            font-weight: 600;
+            padding: 10px 0;
+            border-radius: 60px;
+            transition: var(--transition);
+            width: 100%;
+            border: 2px solid transparent;
+        }
+        .product-card .add-btn:hover {
+            background: var(--yellow-dark);
+            transform: scale(1.02);
+        }
+        .product-card .add-btn.added {
+            background: #2e7d32;
+            color: white;
+        }
+
+        .shop-note {
+            margin-top: 24px;
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-align: center;
+            background: var(--cream);
+            padding: 12px 20px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-light);
+        }
+
+        /* ============================================================
+               CART DRAWER
+               ============================================================ */
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+            backdrop-filter: blur(4px);
+        }
+        .cart-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 420px;
+            max-width: 92vw;
+            height: 100%;
+            background: var(--white);
+            z-index: 2001;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            flex-direction: column;
+            box-shadow: -8px 0 40px rgba(0, 0, 0, 0.10);
+            border-radius: 0 0 0 0;
+        }
+        .cart-drawer.open {
+            transform: translateX(0);
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--gray-light);
+        }
+        .cart-header h2 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+        .cart-close {
+            font-size: 1.6rem;
+            color: var(--gray);
+            transition: var(--transition);
+            padding: 4px;
+        }
+        .cart-close:hover {
+            color: var(--black);
+            transform: rotate(90deg);
+        }
+
+        .cart-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 24px;
+        }
+        .cart-empty {
+            text-align: center;
+            padding: 48px 0;
+            color: var(--gray);
+        }
+        .cart-empty i {
+            font-size: 3rem;
+            opacity: 0.2;
+            margin-bottom: 12px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--cream-dark);
+            align-items: center;
+        }
+        .cart-item .thumb {
+            width: 60px;
+            height: 60px;
+            border-radius: var(--radius-sm);
+            background: var(--cream);
+            flex-shrink: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cart-item .thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .cart-item .thumb .fallback {
+            display: none;
+            width: 100%;
+            height: 100%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: var(--cream);
+            font-size: 1.8rem;
+            color: var(--yellow-dark);
+        }
+        .cart-item .details {
+            flex: 1;
+            min-width: 0;
+        }
+        .cart-item .details h4 {
+            font-weight: 600;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .cart-item .details .price {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--black);
+        }
+        .cart-item .qty-control {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 4px;
+        }
+        .cart-item .qty-control button {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--cream);
+            font-weight: 700;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+        .cart-item .qty-control button:hover {
+            background: var(--yellow);
+        }
+        .cart-item .qty-control span {
+            font-weight: 600;
+            min-width: 24px;
+            text-align: center;
+        }
+        .cart-item .remove-btn {
+            color: var(--gray);
+            transition: var(--transition);
+            padding: 4px;
+            font-size: 0.9rem;
+        }
+        .cart-item .remove-btn:hover {
+            color: #d32f2f;
+        }
+
+        .cart-footer {
+            padding: 20px 24px;
+            border-top: 1px solid var(--gray-light);
+            background: var(--cream);
+        }
+        .cart-footer .subtotal {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1.15rem;
+            margin-bottom: 16px;
+        }
+        .cart-footer .subtotal span:last-child {
+            font-size: 1.3rem;
+        }
+        .cart-footer .checkout-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--black);
+            color: var(--white);
+            font-weight: 700;
+            border-radius: 60px;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+        .cart-footer .checkout-btn:hover {
+            background: var(--yellow);
+            color: var(--black);
+        }
+        .cart-footer .checkout-btn:disabled {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        /* ============================================================
+               MODAL (Order Request)
+               ============================================================ */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition);
+            backdrop-filter: blur(4px);
+        }
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal {
+            background: var(--white);
+            border-radius: var(--radius);
+            max-width: 540px;
+            width: 100%;
+            padding: 40px 36px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.25);
+            transform: scale(0.94) translateY(20px);
+            transition: var(--transition);
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+        .modal-overlay.open .modal {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal h2 {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.8rem;
+            margin-bottom: 4px;
+        }
+        .modal .sub {
+            color: var(--gray);
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+        }
+
+        .modal .form-group {
+            margin-bottom: 18px;
+        }
+        .modal .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+        .modal .form-group input,
+        .modal .form-group textarea,
+        .modal .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            background: var(--cream);
+            border: 2px solid transparent;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+        .modal .form-group input:focus,
+        .modal .form-group textarea:focus,
+        .modal .form-group select:focus {
+            border-color: var(--yellow);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(255, 196, 0, 0.15);
+        }
+        .modal .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .modal .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--yellow);
+            color: var(--black);
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 60px;
+            transition: var(--transition);
+            margin-top: 8px;
+        }
+        .modal .submit-btn:hover {
+            background: var(--yellow-dark);
+            transform: scale(1.01);
+        }
+
+        .modal .success-msg {
+            display: none;
+            text-align: center;
+            padding: 24px 0;
+        }
+        .modal .success-msg i {
+            font-size: 3.5rem;
+            color: #2e7d32;
+            margin-bottom: 12px;
+        }
+        .modal .success-msg h3 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.4rem;
+        }
+        .modal .success-msg p {
+            color: var(--gray);
+        }
+
+        .modal .close-modal {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-size: 1.6rem;
+            color: var(--gray);
+            transition: var(--transition);
+            background: none;
+            border: none;
+        }
+        .modal .close-modal:hover {
+            color: var(--black);
+            transform: rotate(90deg);
+        }
+
+        /* ============================================================
+               CTA PROMO
+               ============================================================ */
+        .cta-promo {
+            background: var(--black);
+            color: var(--white);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-promo::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 196, 0, 0.04);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+        }
+        .cta-promo::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 196, 0, 0.03);
+            border-radius: 50%;
+            bottom: -60px;
+            left: -60px;
+        }
+
+        .cta-promo .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        .cta-promo h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+        .cta-promo h2 .highlight {
+            color: var(--yellow);
+        }
+        .cta-promo p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 500px;
+            margin: 0 auto 32px;
+            line-height: 1.7;
+        }
+        .cta-promo .btn-yellow {
+            font-size: 1.05rem;
+            padding: 16px 40px;
+        }
+
+        /* ============================================================
+               CONTACT
+               ============================================================ */
+        .contact {
+            background: var(--white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .contact-info h3 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+        .contact-info .item {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            margin-bottom: 18px;
+        }
+        .contact-info .item i {
+            width: 20px;
+            color: var(--yellow-dark);
+            font-size: 1.1rem;
+            margin-top: 2px;
+        }
+        .contact-info .item strong {
+            display: block;
+            font-weight: 600;
+        }
+        .contact-info .item span {
+            color: var(--gray);
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 16px;
+        }
+        .contact-form .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+        .contact-form .form-group input,
+        .contact-form .form-group textarea,
+        .contact-form .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            background: var(--cream);
+            border: 2px solid transparent;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+        .contact-form .form-group input:focus,
+        .contact-form .form-group textarea:focus,
+        .contact-form .form-group select:focus {
+            border-color: var(--yellow);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(255, 196, 0, 0.12);
+        }
+        .contact-form .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .contact-form .submit-btn {
+            padding: 14px 36px;
+            background: var(--black);
+            color: var(--white);
+            font-weight: 700;
+            border-radius: 60px;
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+        .contact-form .submit-btn:hover {
+            background: var(--yellow);
+            color: var(--black);
+            transform: translateY(-2px);
+        }
+
+        /* ============================================================
+               FOOTER
+               ============================================================ */
+        .footer {
+            background: var(--black);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 48px 0 32px;
+        }
+        .footer .container {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+        .footer-top {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .footer-brand .brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .footer-brand .brand-text .brand {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--white);
+        }
+        .footer-brand .brand-text .tag {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .footer-brand .logo-svg {
+            width: 40px;
+            height: 40px;
+        }
+        .footer-brand .logo-svg .d-letter {
+            fill: var(--white);
+        }
+        .footer-brand .logo-svg .d-accent {
+            fill: var(--yellow);
+        }
+        .footer-brand .logo-svg .d-outline {
+            stroke: var(--white);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        .footer-links a:hover {
+            color: var(--yellow);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 16px;
+        }
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .footer-social a:hover {
+            background: var(--yellow);
+            color: var(--black);
+            border-color: var(--yellow);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 0.85rem;
+        }
+        .footer-bottom .back-top {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.5);
+            transition: var(--transition);
+        }
+        .footer-bottom .back-top:hover {
+            color: var(--yellow);
+        }
+
+        /* ============================================================
+               RESPONSIVE
+               ============================================================ */
+        @media (max-width: 1024px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+            .hero-trust {
+                justify-content: center;
+            }
+            .slideshow-container {
+                max-width: 300px;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .mobile-nav {
+                display: flex;
+                transform: translateX(100%);
+            }
+            .mobile-nav.open {
+                transform: translateX(0);
+            }
+
+            .hero {
+                padding: 100px 0 60px;
+                min-height: auto;
+            }
+            .hero-content h1 {
+                font-size: 2.6rem;
+            }
+            .slideshow-container {
+                max-width: 240px;
+            }
+            .floating-card {
+                font-size: 0.6rem;
+                padding: 6px 12px;
+                bottom: 12px;
+                right: 6px;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 16px;
+            }
+            .product-card .info {
+                padding: 14px 16px 18px;
+            }
+            .product-card .info h3 {
+                font-size: 0.95rem;
+            }
+
+            .cart-drawer {
+                width: 100%;
+                max-width: 100%;
+                border-radius: 0;
+            }
+
+            .modal {
+                padding: 28px 20px;
+                margin: 12px;
+            }
+
+            .footer-top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            .footer-links {
+                gap: 16px;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .section-padding {
+                padding: 56px 0;
+            }
+            .filter-bar {
+                gap: 6px;
+            }
+            .filter-btn {
+                padding: 6px 14px;
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            .hero-content p {
+                font-size: 1rem;
+            }
+            .hero-buttons .btn-primary,
+            .hero-buttons .btn-secondary {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+                width: 100%;
+                justify-content: center;
+            }
+            .hero-buttons {
+                flex-direction: column;
+            }
+            .hero-trust {
+                gap: 14px;
+                font-size: 0.75rem;
+            }
+
+            .slideshow-container {
+                max-width: 200px;
+                aspect-ratio: 3/4;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .product-card .info .desc {
+                font-size: 0.75rem;
+            }
+            .product-card .info .price {
+                font-size: 1rem;
+            }
+            .product-card .add-btn {
+                font-size: 0.8rem;
+                padding: 8px 0;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .marquee-track span {
+                font-size: 0.8rem;
+                gap: 8px;
+            }
+            .marquee-track {
+                gap: 24px;
+            }
+
+            .cta-promo h2 {
+                font-size: 1.8rem;
+            }
+            .cta-promo .btn-yellow {
+                padding: 14px 28px;
+                font-size: 0.95rem;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .footer-brand .logo-svg {
+                width: 32px;
+                height: 32px;
+            }
+        }
+
+        /* ============================================================
+               SCROLL ANIMATIONS (Intersection Observer)
+               ============================================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================================
+               PRICE NOTE
+               ============================================================ */
+        .price-note {
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-top: 6px;
+            line-height: 1.4;
+        }
+
+        /* Fix for mobile nav display */
+        .mobile-nav {
+            display: none;
+        }
+        .mobile-nav.open {
+            display: flex;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-nav {
+                display: flex;
+                transform: translateX(100%);
+            }
+            .mobile-nav.open {
+                transform: translateX(0);
+            }
+        }
+
+        /* Image fallback styles */
+        .product-card .img-wrap img.error+ .fallback,
+        .cart-item .thumb img.error+ .fallback {
+            display: flex !important;
+        }
+        .product-card .img-wrap img.error {
+            display: none !important;
+        }
+        .cart-item .thumb img.error {
+            display: none !important;
+        }
+        .cart-item .thumb img.error+ .fallback {
+            display: flex !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="#" class="logo-wrap">
+                <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="46" fill="#FFC400" />
+                    <circle cx="50" cy="50" r="46" fill="none" stroke="#141414" stroke-width="3" />
+                    <circle cx="32" cy="32" r="5" fill="#141414" />
+                    <circle cx="50" cy="32" r="4" fill="#141414" />
+                    <circle cx="68" cy="32" r="5" fill="#141414" />
+                    <path d="M40 30 L40 70 L62 70 C74 70 78 58 78 50 C78 42 74 30 62 30 L40 30 Z" fill="#141414" />
+                    <path d="M40 30 L40 70 L62 70 C74 70 78 58 78 50 C78 42 74 30 62 30 L40 30 Z" fill="none" stroke="#FFC400"
+                        stroke-width="2.5" />
+                    <path d="M46 38 L54 38 L58 50 L54 62 L46 62 L42 50 L46 38 Z" fill="#FFC400" opacity="0.9" />
+                    <path d="M46 38 L54 38 L58 50 L54 62 L46 62 L42 50 L46 38 Z" fill="none" stroke="#141414" stroke-width="1.5" />
+                    <rect x="46" y="46" width="8" height="8" rx="2" fill="#141414" opacity="0.7" />
+                </svg>
+                <div class="logo-text">
+                    <span class="brand">Dalyn's Printing Shop</span>
+                    <span class="sub">PRINTING SHOP</span>
+                </div>
+            </a>
+
+            <ul class="nav">
+                <li><a href="#hero" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="cart-btn" id="cartToggle" aria-label="Open cart">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Nav -->
+    <nav class="mobile-nav" id="mobileNav">
+        <button class="close-nav" id="closeNav" aria-label="Close menu">&times;</button>
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#shop">Shop</a>
+        <a href="#contact">Contact Us</a>
+        <hr style="border-color:var(--gray-light);margin:12px 0;" />
+        <a href="#" id="mobileCartLink"><i class="fas fa-shopping-bag"></i> Cart (<span id="mobileCartCount">0</span>)</a>
+    </nav>
+
+    <!-- ============================================================
+    HERO
+    ============================================================ -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge"><i class="fas fa-print"></i> CUSTOM PRINTING • MADE FOR YOU</div>
+                <h1>
+                    Bring Your <br />
+                    <span class="highlight">Ideas</span> To Life.
+                </h1>
+                <p>
+                    Premium custom printing for shirts, mugs, stickers, tarpaulins,
+                    business materials and more — with friendly service from
+                    Dalyn's Printing Shop.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#shop" class="btn-primary">
+                        Explore Products <i class="fas fa-arrow-right"></i>
+                    </a>
+                    <a href="#contact" class="btn-secondary">
+                        Request a Quote <i class="fas fa-pen-fancy"></i>
+                    </a>
+                </div>
+                <div class="hero-trust">
+                    <span><i class="fas fa-clock"></i> Fast Turnaround</span>
+                    <span><i class="fas fa-palette"></i> Custom Designs</span>
+                    <span><i class="fas fa-coins"></i> Budget-Friendly</span>
+                </div>
+            </div>
+
+            <!-- ============================================================
+            HERO SLIDESHOW GALLERY — auto-switching through 1.jpg to 4.jpg
+            ============================================================ -->
+            <div class="hero-image">
+                <div class="slideshow-container" id="heroSlideshow">
+                    <div class="slide active"><img src="1.jpg" alt="Custom T-Shirt" onerror="this.style.display='none'" /></div>
+                    <div class="slide"><img src="2.jpg" alt="Custom Mug" onerror="this.style.display='none'" /></div>
+                    <div class="slide"><img src="3.jpg" alt="Business Cards" onerror="this.style.display='none'" /></div>
+                    <div class="slide"><img src="4.jpg" alt="Event Shirt Package" onerror="this.style.display='none'" /></div>
+                </div>
+
+                <!-- Floating card -->
+                <div class="floating-card">
+                    <i class="fas fa-check-circle"></i> Made to order &bull; Print your style
+                </div>
+
+                <div class="ring"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    MARQUEE
+    ============================================================ -->
+    <section class="marquee">
+        <div class="marquee-track">
+            <span><i class="fas fa-circle"></i> T-SHIRTS</span>
+            <span><i class="fas fa-circle"></i> MUG PRINTING</span>
+            <span><i class="fas fa-circle"></i> STICKERS</span>
+            <span><i class="fas fa-circle"></i> TARPAULIN</span>
+            <span><i class="fas fa-circle"></i> BUSINESS CARDS</span>
+            <span><i class="fas fa-circle"></i> CUSTOM DESIGNS</span>
+            <!-- duplicate for seamless loop -->
+            <span><i class="fas fa-circle"></i> T-SHIRTS</span>
+            <span><i class="fas fa-circle"></i> MUG PRINTING</span>
+            <span><i class="fas fa-circle"></i> STICKERS</span>
+            <span><i class="fas fa-circle"></i> TARPAULIN</span>
+            <span><i class="fas fa-circle"></i> BUSINESS CARDS</span>
+            <span><i class="fas fa-circle"></i> CUSTOM DESIGNS</span>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    ABOUT
+    ============================================================ -->
+    <section class="about section-padding" id="about">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-label">About Us</span>
+                <h2 class="section-title">Printing that <span class="highlight">feels personal.</span></h2>
+                <p class="section-sub mx-auto">
+                    Whether you're building a small brand, preparing a birthday celebration,
+                    creating team shirts, or simply making something special, we turn your
+                    design into something you can proudly hold.
+                </p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <p>
+                        At Dalyn's Printing Shop, we believe that every print tells a story.
+                        From the first sketch to the final product, we work closely with you
+                        to ensure your vision comes to life with vivid colors and crisp details.
+                    </p>
+                    <p>
+                        We're a Philippine-based printing service dedicated to quality,
+                        affordability, and friendly customer care. No order is too small
+                        — every project gets our full attention.
+                    </p>
+                    <p>
+                        <strong>Owned and operated by Dalen Tac-an Lumanao</strong>, we take pride
+                        in serving our community with exceptional print solutions.
+                    </p>
+                </div>
+                <div class="steps reveal">
+                    <div class="step-card">
+                        <div class="num">01</div>
+                        <h4>Send your design</h4>
+                        <p>Share your artwork or idea with us.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="num">02</div>
+                        <h4>Choose your product</h4>
+                        <p>Pick from shirts, mugs, stickers &amp; more.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="num">03</div>
+                        <h4>Approve the proof</h4>
+                        <p>We'll send a digital proof for your OK.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="num">04</div>
+                        <h4>Pick up / delivery</h4>
+                        <p>Get your printed items fast and fresh.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SERVICES
+    ============================================================ -->
+    <section class="services section-padding" id="services">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-label">What We Do</span>
+                <h2 class="section-title">Print it. <span class="highlight">Wear it.</span> Share it.</h2>
+                <p class="section-sub mx-auto">
+                    Popular services for personal orders, events and small businesses.
+                </p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="icon"><i class="fas fa-tshirt"></i></div>
+                    <h3>Apparel Printing</h3>
+                    <p>Custom T-shirts, jerseys and uniforms for teams, businesses and events.</p>
+                    <a href="#shop" class="link">View →</a>
+                </div>
+                <div class="service-card reveal">
+                    <div class="icon"><i class="fas fa-mug-hot"></i></div>
+                    <h3>Mug Printing</h3>
+                    <p>Personalized mugs for gifts, birthdays, offices and souvenirs.</p>
+                    <a href="#shop" class="link">View →</a>
+                </div>
+                <div class="service-card reveal">
+                    <div class="icon"><i class="fas fa-sign"></i></div>
+                    <h3>Signage &amp; Tarpaulin</h3>
+                    <p>Clear, vibrant prints for celebrations, promotions and business needs.</p>
+                    <a href="#shop" class="link">View →</a>
+                </div>
+                <div class="service-card reveal">
+                    <div class="icon"><i class="fas fa-sparkles"></i></div>
+                    <h3>Stickers &amp; Labels</h3>
+                    <p>Custom labels, product stickers and branding materials in different sizes.</p>
+                    <a href="#shop" class="link">View →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SHOP / PRODUCTS
+    ============================================================ -->
+    <section class="shop section-padding" id="shop">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-label">Catalog</span>
+                <h2 class="section-title">Choose your <span class="highlight">print.</span></h2>
+            </div>
+
+            <!-- Filters -->
+            <div class="filter-bar reveal">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="apparel">Apparel</button>
+                <button class="filter-btn" data-filter="drinkware">Drinkware</button>
+                <button class="filter-btn" data-filter="business">Business</button>
+                <button class="filter-btn" data-filter="events">Events</button>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="productsGrid">
+                <!-- Rendered by JS -->
+            </div>
+
+            <div class="shop-note reveal">
+                <i class="fas fa-info-circle"></i>
+                Displayed prices are <strong>starting prices</strong> and may change depending on quantity, size, material,
+                printing method and design.
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PROMOTIONAL CTA
+    ============================================================ -->
+    <section class="cta-promo" id="cta">
+        <div class="container reveal">
+            <h2>
+                Your design deserves to be <span class="highlight">printed.</span>
+            </h2>
+            <p>
+                Send us your artwork or tell us your idea. We'll help you choose
+                the right material and finish.
+            </p>
+            <a href="#contact" class="btn-yellow">
+                Start Your Order <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    CONTACT
+    ============================================================ -->
+    <section class="contact section-padding" id="contact">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-label">Get in Touch</span>
+                <h2 class="section-title">Let's make something <span class="highlight">great.</span></h2>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <h3><i class="fas fa-store" style="color:var(--yellow-dark);"></i> Visit Us</h3>
+                    <div class="item">
+                        <i class="fas fa-location-dot"></i>
+                        <div>
+                            <strong>Shop Address</strong>
+                            <span>P4, Tigao, Cortes, Surigao del Sur</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Phone / Messenger</strong>
+                            <span>0927 896 9720</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email</strong>
+                            <span>dallaine.mae@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Opening Hours</strong>
+                            <span>Monday–Saturday &bull; 9:00 AM–6:00 PM</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <i class="fas fa-user"></i>
+                        <div>
+                            <strong>Owner</strong>
+                            <span>Dalen Tac-an Lumanao</span>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form reveal" id="contactForm">
+                    <div class="form-group">
+                        <label for="contactName">Name</label>
+                        <input type="text" id="contactName" name="name" placeholder="Your name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="contactPhone">Phone</label>
+                        <input type="tel" id="contactPhone" name="phone" placeholder="09XX XXX XXXX" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="contactService">Service</label>
+                        <select id="contactService" name="service">
+                            <option value="">Select a service…</option>
+                            <option value="apparel">Apparel Printing</option>
+                            <option value="mug">Mug Printing</option>
+                            <option value="signage">Signage &amp; Tarpaulin</option>
+                            <option value="stickers">Stickers &amp; Labels</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactMessage">Message</label>
+                        <textarea id="contactMessage" name="message" placeholder="Tell us about your project…" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">
+                        Send Quote Request <i class="fas fa-paper-plane"></i>
+                    </button>
+                    <p style="margin-top:12px;font-size:0.75rem;color:var(--gray);">
+                        <i class="fas fa-info-circle"></i> Your message will be sent directly to our team.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="46" fill="#FFC400" />
+                        <circle cx="50" cy="50" r="46" fill="none" stroke="#ffffff" stroke-width="3" />
+                        <circle cx="32" cy="32" r="5" fill="#ffffff" />
+                        <circle cx="50" cy="32" r="4" fill="#ffffff" />
+                        <circle cx="68" cy="32" r="5" fill="#ffffff" />
+                        <path d="M40 30 L40 70 L62 70 C74 70 78 58 78 50 C78 42 74 30 62 30 L40 30 Z" fill="#ffffff" />
+                        <path d="M40 30 L40 70 L62 70 C74 70 78 58 78 50 C78 42 74 30 62 30 L40 30 Z" fill="none" stroke="#FFC400"
+                            stroke-width="2.5" />
+                        <path d="M46 38 L54 38 L58 50 L54 62 L46 62 L42 50 L46 38 Z" fill="#FFC400" opacity="0.9" />
+                        <path d="M46 38 L54 38 L58 50 L54 62 L46 62 L42 50 L46 38 Z" fill="none" stroke="#ffffff"
+                            stroke-width="1.5" />
+                        <rect x="46" y="46" width="8" height="8" rx="2" fill="#ffffff" opacity="0.7" />
+                    </svg>
+                    <div class="brand-text">
+                        <div class="brand">Dalyn's Printing Shop</div>
+                        <div class="tag">PRINT • CREATE • SHARE</div>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <a href="#hero">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#services">Services</a>
+                    <a href="#shop">Shop</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 Dalyn's Printing Shop — P4, Tigao, Cortes, Surigao del Sur</span>
+                <a href="#hero" class="back-top">
+                    <i class="fas fa-arrow-up"></i> Back to top
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    CART DRAWER
+    ============================================================ -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h2><i class="fas fa-shopping-bag" style="color:var(--yellow-dark);"></i> Your Order</h2>
+            <button class="cart-close" id="cartClose">&times;</button>
+        </div>
+        <div class="cart-body" id="cartBody">
+            <!-- Rendered by JS -->
+        </div>
+        <div class="cart-footer" id="cartFooter">
+            <div class="subtotal">
+                <span>Subtotal</span>
+                <span id="cartSubtotal">₱0</span>
+            </div>
+            <button class="checkout-btn" id="checkoutBtn">Proceed to Order</button>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    ORDER MODAL
+    ============================================================ -->
+    <div class="modal-overlay" id="orderModal">
+        <div class="modal">
+            <button class="close-modal" id="modalClose">&times;</button>
+
+            <div id="modalFormView">
+                <h2>Almost there! 🎨</h2>
+                <p class="sub">
+                    Your selected items are ready. Send your contact details and
+                    we'll confirm the final quote.
+                </p>
+                <form id="orderForm">
+                    <div class="form-group">
+                        <label for="orderName">Full Name</label>
+                        <input type="text" id="orderName" name="name" placeholder="Juan Dela Cruz" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="orderPhone">Phone / Messenger</label>
+                        <input type="tel" id="orderPhone" name="phone" placeholder="09XX XXX XXXX" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="orderNotes">Order Notes</label>
+                        <textarea id="orderNotes" name="notes" placeholder="Size, color, design details…"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="orderDeadline">Deadline</label>
+                        <input type="date" id="orderDeadline" name="deadline" />
+                    </div>
+                    <div class="form-group">
+                        <label for="orderDelivery">Preferred pickup / delivery</label>
+                        <select id="orderDelivery" name="delivery">
+                            <option value="pickup">Pickup at shop</option>
+                            <option value="delivery">Delivery</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Order Request</button>
+                    <p style="margin-top:12px;font-size:0.75rem;color:var(--gray);">
+                        <i class="fas fa-info-circle"></i> We'll confirm your order within 24 hours.
+                    </p>
+                </form>
+            </div>
+
+            <div class="success-msg" id="modalSuccess">
+                <i class="fas fa-check-circle"></i>
+                <h3>Order Request Sent! 🎉</h3>
+                <p>We'll get back to you within 24 hours with your final quote.</p>
+                <button class="btn-yellow" style="margin-top:16px;" id="modalSuccessClose">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    JAVASCRIPT — with Formspree integration & slideshow
+    ============================================================ -->
+    <script>
+        // ============================================================
+        // 🔥 REPLACE THESE WITH YOUR FORMSPREE ENDPOINTS 🔥
+        // ============================================================
+        const CONTACT_ENDPOINT = 'https://formspree.io/f/YOUR_ENDPOINT_HERE';
+        const ORDER_ENDPOINT = 'https://formspree.io/f/YOUR_ENDPOINT_HERE';
+
+        // ============================================================
+        // PRODUCT DATA — using your local images (1.jpg, 2.jpg, 3.jpg, 4.jpg)
+        // ============================================================
+        const products = [{
+            id: 1,
+            name: 'Custom T-Shirt',
+            category: 'apparel',
+            price: 250,
+            desc: 'Personalized shirt printing. Starting price per piece.',
+            image: '1.jpg',
+            icon: 'fa-tshirt'
+        }, {
+            id: 4,
+            name: 'Custom Mug',
+            category: 'drinkware',
+            price: 180,
+            desc: 'Personalized mugs for gifts, offices and souvenirs.',
+            image: '2.jpg',
+            icon: 'fa-mug-hot'
+        }, {
+            id: 7,
+            name: 'Business Cards',
+            category: 'business',
+            price: 150,
+            desc: 'Professional business cards. ₱150 / 100 pcs.',
+            image: '3.jpg',
+            icon: 'fa-id-card'
+        }, {
+            id: 9,
+            name: 'Event Shirt Package',
+            category: 'events',
+            price: 240,
+            desc: 'Bulk shirt printing for events. ₱240 / piece.',
+            image: '4.jpg',
+            icon: 'fa-calendar-check'
+        }];
+
+        // ============================================================
+        // SLIDESHOW AUTO-SWITCH
+        // ============================================================
+        (function initSlideshow() {
+            const slides = document.querySelectorAll('#heroSlideshow .slide');
+            if (!slides.length) return;
+            let current = 0;
+
+            function showSlide(index) {
+                slides.forEach((s, i) => {
+                    s.classList.toggle('active', i === index);
+                });
+            }
+
+            function nextSlide() {
+                current = (current + 1) % slides.length;
+                showSlide(current);
+            }
+
+            // Start auto-switch every 3.5 seconds
+            setInterval(nextSlide, 3500);
+        })();
+
+        // ============================================================
+        // STATE
+        // ============================================================
+        let cart = JSON.parse(localStorage.getItem('dalyns_cart')) || [];
+        let currentFilter = 'all';
+
+        // ============================================================
+        // DOM REFS
+        // ============================================================
+        const productsGrid = document.getElementById('productsGrid');
+        const cartCount = document.getElementById('cartCount');
+        const mobileCartCount = document.getElementById('mobileCartCount');
+        const cartBody = document.getElementById('cartBody');
+        const cartSubtotal = document.getElementById('cartSubtotal');
+        const cartDrawer = document.getElementById('cartDrawer');
+        const cartOverlay = document.getElementById('cartOverlay');
+        const cartToggle = document.getElementById('cartToggle');
+        const cartClose = document.getElementById('cartClose');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const orderModal = document.getElementById('orderModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalSuccessClose = document.getElementById('modalSuccessClose');
+        const modalFormView = document.getElementById('modalFormView');
+        const modalSuccess = document.getElementById('modalSuccess');
+        const orderForm = document.getElementById('orderForm');
+        const contactForm = document.getElementById('contactForm');
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobileNav');
+        const closeNav = document.getElementById('closeNav');
+        const mobileCartLink = document.getElementById('mobileCartLink');
+
+        // ============================================================
+        // RENDER PRODUCTS
+        // ============================================================
+        function renderProducts() {
+            const filtered = currentFilter === 'all' ?
+                products :
+                products.filter(p => p.category === currentFilter);
+
+            if (filtered.length === 0) {
+                productsGrid.innerHTML =
+                    `<p style="grid-column:1/-1;text-align:center;color:var(--gray);padding:40px 0;">No products found in this category.</p>`;
+                return;
+            }
+
+            productsGrid.innerHTML = filtered.map((p, idx) => `
+                    <div class="product-card" style="animation-delay:${(idx * 0.06).toFixed(2)}s">
+                        <div class="img-wrap">
+                            <img src="${p.image}" alt="${p.name}" loading="lazy" onerror="this.classList.add('error'); this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="fallback">
+                                <i class="fas ${p.icon}"></i>
+                                ${p.name}
+                                <span>🖼️ Place your image</span>
+                            </div>
+                            <span class="category-badge">${p.category}</span>
+                        </div>
+                        <div class="info">
+                            <h3>${p.name}</h3>
+                            <div class="desc">${p.desc}</div>
+                            <div class="price">₱${p.price} <small>start</small></div>
+                            <button class="add-btn" data-id="${p.id}">
+                                <i class="fas fa-plus"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+
+            document.querySelectorAll('.add-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const id = parseInt(this.dataset.id);
+                    addToCart(id);
+                    this.innerHTML = '<i class="fas fa-check"></i> Added';
+                    this.classList.add('added');
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-plus"></i> Add';
+                        this.classList.remove('added');
+                    }, 1200);
+                });
+            });
+        }
+
+        // ============================================================
+        // CART FUNCTIONS
+        // ============================================================
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+            saveCart();
+            updateCartUI();
+            openCart();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            saveCart();
+            updateCartUI();
+            renderCartItems();
+        }
+
+        function updateQty(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) {
+                removeFromCart(productId);
+                return;
+            }
+            saveCart();
+            updateCartUI();
+            renderCartItems();
+        }
+
+        function saveCart() {
+            localStorage.setItem('dalyns_cart', JSON.stringify(cart));
+        }
+
+        function getTotalItems() {
+            return cart.reduce((sum, item) => sum + item.qty, 0);
+        }
+
+        function getSubtotal() {
+            return cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+        }
+
+        function updateCartUI() {
+            const total = getTotalItems();
+            cartCount.textContent = total;
+            mobileCartCount.textContent = total;
+            cartCount.style.display = total > 0 ? 'flex' : 'none';
+            renderCartItems();
+        }
+
+        function renderCartItems() {
+            if (cart.length === 0) {
+                cartBody.innerHTML = `
+                        <div class="cart-empty">
+                            <i class="fas fa-shopping-bag"></i>
+                            <p>Your cart is empty.</p>
+                            <a href="#shop" style="color:var(--yellow-dark);font-weight:600;">Browse products →</a>
+                        </div>
+                    `;
+                cartSubtotal.textContent = '₱0';
+                checkoutBtn.disabled = true;
+                return;
+            }
+
+            cartBody.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div class="thumb">
+                            <img src="${item.image}" alt="${item.name}" onerror="this.classList.add('error'); this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+                            <div class="fallback">
+                                <i class="fas ${item.icon}"></i>
+                            </div>
+                        </div>
+                        <div class="details">
+                            <h4>${item.name}</h4>
+                            <div class="price">₱${item.price}</div>
+                            <div class="qty-control">
+                                <button data-id="${item.id}" data-delta="-1">−</button>
+                                <span>${item.qty}</span>
+                                <button data-id="${item.id}" data-delta="1">+</button>
+                            </div>
+                        </div>
+                        <button class="remove-btn" data-id="${item.id}"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                `).join('');
+
+            cartBody.querySelectorAll('.qty-control button').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = parseInt(this.dataset.id);
+                    const delta = parseInt(this.dataset.delta);
+                    updateQty(id, delta);
+                });
+            });
+
+            cartBody.querySelectorAll('.remove-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = parseInt(this.dataset.id);
+                    removeFromCart(id);
+                });
+            });
+
+            const subtotal = getSubtotal();
+            cartSubtotal.textContent = `₱${subtotal}`;
+            checkoutBtn.disabled = false;
+        }
+
+        // ============================================================
+        // CART DRAWER
+        // ============================================================
+        function openCart() {
+            cartDrawer.classList.add('open');
+            cartOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            renderCartItems();
+        }
+
+        function closeCart() {
+            cartDrawer.classList.remove('open');
+            cartOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        cartToggle.addEventListener('click', openCart);
+        cartClose.addEventListener('click', closeCart);
+        cartOverlay.addEventListener('click', closeCart);
+
+        // ============================================================
+        // ORDER MODAL
+        // ============================================================
+        function openOrderModal() {
+            if (cart.length === 0) return;
+            orderModal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            modalFormView.style.display = 'block';
+            modalSuccess.style.display = 'none';
+            orderForm.reset();
+        }
+
+        function closeOrderModal() {
+            orderModal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        checkoutBtn.addEventListener('click', openOrderModal);
+        modalClose.addEventListener('click', closeOrderModal);
+        modalSuccessClose.addEventListener('click', closeOrderModal);
+        orderModal.addEventListener('click', function(e) {
+            if (e.target === this) closeOrderModal();
+        });
+
+        // ============================================================
+        // CONTACT FORM — REAL SUBMISSION VIA FORMSPREE
+        // ============================================================
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('.submit-btn');
+            const originalHTML = btn.innerHTML;
+
+            btn.disabled = true;
+            btn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+
+            const formData = new FormData(this);
+
+            try {
+                const response = await fetch(CONTACT_ENDPOINT, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    alert('✅ Your quote request has been sent! We\'ll get back to you soon.');
+                    this.reset();
+                } else {
+                    const errorData = await response.json();
+                    alert(`❌ Something went wrong: ${errorData.error || 'Please try again.'}`);
+                }
+            } catch (error) {
+                alert('❌ Network error. Please check your connection and try again.');
+            }
+
+            btn.disabled = false;
+            btn.innerHTML = originalHTML;
+        });
+
+        // ============================================================
+        // ORDER FORM — REAL SUBMISSION VIA FORMSPREE
+        // ============================================================
+        orderForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('.submit-btn');
+            const originalHTML = btn.innerHTML;
+
+            const name = document.getElementById('orderName').value.trim();
+            const phone = document.getElementById('orderPhone').value.trim();
+            if (!name || !phone) {
+                alert('Please fill in your name and phone number.');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = 'Submitting... <i class="fas fa-spinner fa-spin"></i>';
+
+            const formData = new FormData(this);
+            formData.append('cart_items', JSON.stringify(cart));
+            formData.append('subtotal', `₱${getSubtotal()}`);
+            formData.append('total_items', getTotalItems());
+
+            try {
+                const response = await fetch(ORDER_ENDPOINT, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    modalFormView.style.display = 'none';
+                    modalSuccess.style.display = 'block';
+
+                    cart = [];
+                    saveCart();
+                    updateCartUI();
+                    closeCart();
+                } else {
+                    const errorData = await response.json();
+                    alert(`❌ Submission failed: ${errorData.error || 'Please try again.'}`);
+                    btn.disabled = false;
+                    btn.innerHTML = originalHTML;
+                }
+            } catch (error) {
+                alert('❌ Network error. Please check your connection and try again.');
+                btn.disabled = false;
+                btn.innerHTML = originalHTML;
+            }
+        });
+
+        // ============================================================
+        // FILTERS
+        // ============================================================
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentFilter = this.dataset.filter;
+                renderProducts();
+                document.querySelectorAll('.product-card').forEach(card => {
+                    card.style.animation = 'none';
+                    card.offsetHeight;
+                    card.style.animation = 'fadeUp 0.6s forwards';
+                });
+            });
+        });
+
+        // ============================================================
+        // MOBILE NAV
+        // ============================================================
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileNav.classList.toggle('open');
+            document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+        });
+
+        closeNav.addEventListener('click', function() {
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('open');
+            document.body.style.overflow = '';
+        });
+
+        mobileCartLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            hamburger.classList.remove('active');
+            mobileNav.classList.remove('open');
+            document.body.style.overflow = '';
+            openCart();
+        });
+
+        mobileNav.querySelectorAll('a:not(#mobileCartLink)').forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // ============================================================
+        // HEADER SCROLL EFFECT
+        // ============================================================
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 60) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ============================================================
+        // SMOOTH SCROLL FOR NAV LINKS
+        // ============================================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const offset = 80;
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // ============================================================
+        // INTERSECTION OBSERVER (Reveal)
+        // ============================================================
+        const revealEls = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+        revealEls.forEach(el => observer.observe(el));
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        renderProducts();
+        updateCartUI();
+
+        const total = getTotalItems();
+        document.querySelectorAll('.cart-count').forEach(el => {
+            el.style.display = total > 0 ? 'flex' : 'none';
+        });
+
+        // ============================================================
+        // KEYBOARD SHORTCUT: ESC to close
+        // ============================================================
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (cartDrawer.classList.contains('open')) closeCart();
+                if (orderModal.classList.contains('open')) closeOrderModal();
+                if (mobileNav.classList.contains('open')) {
+                    hamburger.classList.remove('active');
+                    mobileNav.classList.remove('open');
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+
+        console.log('🖨️ Dalyn\'s Printing Shop — Bring Your Ideas To Life.');
+        console.log('📦 Cart persisted with localStorage.');
+        console.log('📧 Forms connected to Formspree. Replace endpoints with your own!');
+        console.log('📁 Using local images: 1.jpg, 2.jpg, 3.jpg, 4.jpg');
+        console.log('📍 Shop address: P4, Tigao, Cortes, Surigao del Sur');
+        console.log('📞 Contact: 0927 896 9720 | dallaine.mae@gmail.com');
+        console.log('👤 Owner: Dalen Tac-an Lumanao');
+        console.log('🖼️ Hero slideshow cycling through 1.jpg – 4.jpg');
+    </script>
+
+</body>
+</html>
